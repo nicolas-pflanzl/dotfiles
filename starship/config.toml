@@ -207,19 +207,6 @@ style = "fg:blue"
 format = '[ at](fg:white) [  $time]($style)'
 
 #################################################
-# Custom modules
-#################################################
-
-[custom.editorconfig]
-detect_files = [".editorconfig"]
-symbol = ""
-format = "[$symbol ec]($style) "
-
-[custom.prettier]
-detect_files = [".prettierrc", ".prettierrc.json", ".prettierrc.yml", ".prettierrc.yaml", ".prettierrc.json5", ".prettierrc.js", "prettier.config.js", ".prettierrc.ts", "prettier.config.ts"]
-format = "keks "
-
-#################################################
 # Prompt character
 #################################################
 
