@@ -1,0 +1,256 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+#################################################
+# Prompt structure
+#################################################
+format = """
+(\
+	[](fg:red)\
+	$os\
+	$username\
+	[ ](fg:red)\
+)\
+(\
+	[](orange)\
+	$directory\
+	[ ](orange)\
+)\
+(\
+	[](yellow)\
+	$git_branch\
+	[ ](yellow)\
+)\
+(\
+	[](green)\
+	$git_status\
+	[ ](green)\
+)\
+(\
+	[](blue)\
+	$c\
+	$rust\
+	$golang\
+	$nodejs\
+	$php\
+	$java\
+	$kotlin\
+	$haskell\
+	$python\
+	[ ](blue)\
+)\
+(\
+	[](purple)\
+	$package\
+	[ ](purple)\
+)\
+$fill\
+(\
+	$status\
+	$cmd_duration\
+	$time\
+)\
+$line_break\
+$character
+"""
+
+palette = 'monokai_pro'
+
+#################################################
+# Left prompt side
+#################################################
+
+# Segment 1: OS, user and host
+
+[os]
+disabled = false
+style = "bg:red fg:black"
+
+[os.symbols]
+Windows 	= ""
+Ubuntu 		= "󰕈"
+SUSE 		= ""
+Raspbian 	= "󰐿"
+Mint 		= "󰣭"
+Macos 		= "󰀵"
+Manjaro 	= ""
+Linux 		= "󰌽"
+Gentoo 		= "󰣨"
+Fedora 		= "󰣛"
+Alpine 		= ""
+Amazon 		= ""
+Android 	= ""
+AOSC 		= ""
+Arch 		= "󰣇"
+Artix 		= "󰣇"
+CentOS 		= ""
+Debian 		= "󰣚"
+Redhat 		= "󱄛"
+RedHatEnterprise = "󱄛"
+
+[username]
+show_always = true
+style_user 	= "bg:red fg:black"
+style_root 	= "bg:red fg:black"
+format 		= '[ $user]($style)'
+
+# Segment 2: Current directory
+
+[directory]
+style = "bg:orange fg:black"
+format = "[ $path]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents"	= "󰈙 "
+"Downloads"	= " "
+"Music" 	= "󰝚 "
+"Pictures"	= " "
+
+# Segment 3: Git branch
+
+[git_branch]
+symbol = ""
+style = "bg:yellow"
+format = '[[$symbol $branch](fg:black bg:yellow)]($style)'
+
+# Segment 4: Git status
+
+[git_status]
+style = "fg:black bg:green"
+format = "[(󰇂 $all_status$ahead_behind)]($style)"
+
+# Segment 5: Programming languages and frameworks
+
+[c]
+symbol = " "
+style = "fg:black bg:green"
+format = '[$symbol( $version)]($style)'
+
+[golang]
+symbol = ""
+style = "fg:black bg:green"
+format = '[$symbol( $version)]($style)'
+
+[haskell]
+symbol = ""
+style = "fg:black bg:green"
+format = '[$symbol( $version)]($style)'
+
+[java]
+symbol = " "
+style = "fg:black bg:green"
+format = '[$symbol( $version)]($style)'
+
+[kotlin]
+symbol = ""
+style = "fg:black bg:green"
+format = '[$symbol( $version)]($style)'
+
+[nodejs]
+symbol = "󰎙"
+style = "fg:black bg:blue"
+format = '[$symbol( $version)]($style)'
+
+[php]
+symbol = ""
+style = "fg:black bg:green"
+format = '[$symbol( $version)]($style)'
+
+[python]
+symbol = ""
+style = "fg:black bg:green"
+format = '[$symbol( $version)(\(#$virtualenv\))]($style)'
+
+[rust]
+symbol = ""
+style = "fg:black bg:green"
+format = '[$symbol( $version)]($style)'
+
+# Segment 6: Current app/module/package
+
+[package]
+symbol = ""
+format = "[$symbol ( $version)](fg:black bg:blue)"
+
+[line_break]
+disabled = false
+
+#################################################
+# Fill between left and right prompt side
+#################################################
+
+[fill]
+symbol = '-'
+style = "grey"
+
+#################################################
+# Right prompt side
+#################################################
+
+[status]
+disabled = false
+format = "[ $symbol$status]($style)"
+
+[cmd_duration]
+min_time = 20
+show_milliseconds = true
+min_time_to_notify = 45000
+show_notifications = true
+style = "fg:green"
+format = '[ took](fg:white) [ $duration]($style)'
+
+[time]
+disabled = false
+time_format = "%R"
+style = "fg:blue"
+format = '[ at](fg:white) [  $time]($style)'
+
+#################################################
+# Custom modules
+#################################################
+
+[custom.editorconfig]
+detect_files = [".editorconfig"]
+symbol = ""
+format = "[$symbol ec]($style) "
+
+[custom.prettier]
+detect_files = [".prettierrc", ".prettierrc.json", ".prettierrc.yml", ".prettierrc.yaml", ".prettierrc.json5", ".prettierrc.js", "prettier.config.js", ".prettierrc.ts", "prettier.config.ts"]
+format = "keks "
+
+#################################################
+# Prompt character
+#################################################
+
+[character]
+disabled = false
+success_symbol 				= '[❯](bold fg:green)'
+error_symbol 				= '[❯](bold fg:red)'
+vimcmd_symbol 				= '[❮](bold fg:green)'
+vimcmd_replace_one_symbol 	= '[❮](bold fg:purple)'
+vimcmd_replace_symbol 		= '[❮](bold fg:purple)'
+vimcmd_visual_symbol 		= '[❮](bold fg:yellow)'
+
+#################################################
+# Color palettes
+#################################################
+
+[palettes.monokai_pro]
+red 	= "#ff6188"
+orange 	= "#fc9867"
+yellow 	= "#ffd866"
+green 	= "#a9dc76"
+blue	= "#78dce8"
+purple 	= "#ab9df2"
+black 	= "#2d2a2e"
+white 	= "#fcfcfa"
+
+grey	= "#727072"
+
+accent1 = "#ff6188"
+accent2 = "#fc9867"
+accent3 = "#ffd866"
+accent4 = "#a9dc76"
+accent5 = "#78dce8"
+accent6 = "#ab9df2"
